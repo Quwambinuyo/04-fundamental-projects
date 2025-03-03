@@ -20,7 +20,6 @@ const App = () => {
       const response = await fetch(url);
       const tours = await response.json();
       setTours(tours);
-      console.log(tours);
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +34,24 @@ const App = () => {
     return (
       <main>
         <Loading />
+      </main>
+    );
+  }
+
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>No Tours left</h2>
+          <button
+            onClick={fetchTours}
+            className="btn"
+            type="button"
+            style={{ marginTop: "2rem" }}
+          >
+            Refresh
+          </button>
+        </div>
       </main>
     );
   }
