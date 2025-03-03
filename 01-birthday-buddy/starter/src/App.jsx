@@ -5,7 +5,7 @@ import List from "./component/List";
 const App = () => {
   const [people, setPeople] = useState(data);
 
-  const onClick = (e) => {
+  const onClear = (e) => {
     setPeople([]);
   };
 
@@ -21,11 +21,11 @@ const App = () => {
           <List people={people} />
 
           {people.length > 1 ? (
-            <button className="btn" onClick={onClick}>
-              Clear
+            <button type="button" className="btn btn-block" onClick={onClear}>
+              Clear All
             </button>
           ) : (
-            <button className="btn" onClick={reRender}>
+            <button type="button" className="btn btn-block" onClick={reRender}>
               Reset
             </button>
           )}
