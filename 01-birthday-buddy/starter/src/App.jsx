@@ -5,12 +5,30 @@ import List from "./component/List";
 const App = () => {
   const [people, setPeople] = useState(data);
 
+  const onClick = (e) => {
+    setPeople([]);
+  };
+
+  const reRender = (e) => {
+    setPeople(data);
+  };
+
   return (
     <>
       <main>
         <section className="container">
           <h3>{people.length} Birthdays Today</h3>
           <List people={people} />
+
+          {people.length > 1 ? (
+            <button className="btn" onClick={onClick}>
+              Clear
+            </button>
+          ) : (
+            <button className="btn" onClick={reRender}>
+              Reset
+            </button>
+          )}
         </section>
       </main>
     </>
