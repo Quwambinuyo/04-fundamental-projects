@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import React from "react";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"; // Importing icons
 
 const SingleQuestion = ({ title, info, activeId, id, toggleQuestion }) => {
-  // const [showInfo, setShowInfo] = useState(false);
+  // Check if this question is currently active
   const isActive = id === activeId;
 
   return (
@@ -10,14 +10,17 @@ const SingleQuestion = ({ title, info, activeId, id, toggleQuestion }) => {
       <article className="question">
         <header>
           <h5>{title}</h5>
+          {/* Button to toggle question visibility */}
           <button
             type="button"
             className="question-btn"
             onClick={() => toggleQuestion(id)}
           >
+            {/* Show minus icon if active, otherwise show plus icon */}
             {isActive ? <AiOutlineMinus /> : <AiOutlinePlus />}
           </button>
         </header>
+        {/* Display answer if the question is active */}
         {isActive && <p>{info}</p>}
       </article>
     </>
