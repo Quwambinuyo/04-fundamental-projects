@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
+// Component to display details of a single tour
+// Includes an image, name, price, and a toggleable description
 const Tour = ({ id, image, info, name, price, removeTour }) => {
-  const [readMore, setReadMore] = useState(false);
+  const [readMore, setReadMore] = useState(false); // State to toggle full description
 
   return (
     <>
@@ -11,6 +13,8 @@ const Tour = ({ id, image, info, name, price, removeTour }) => {
         <span className="tour-price">${price}</span>
         <div className="tour-info">
           <h5>{name}</h5>
+
+          {/* Show either full info or a shortened version with a "read more" toggle */}
           <p>
             {readMore ? info : `${info.substring(0, 200)}...`}
             <button
@@ -22,12 +26,13 @@ const Tour = ({ id, image, info, name, price, removeTour }) => {
             </button>
           </p>
 
+          {/* Button to remove the tour from the list */}
           <button
             type="button"
             className="btn btn-block"
             onClick={() => removeTour(id)}
           >
-            not Interested
+            Not Interested
           </button>
         </div>
       </article>

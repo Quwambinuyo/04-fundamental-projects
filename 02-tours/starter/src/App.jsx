@@ -8,11 +8,14 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [tours, setTours] = useState([]);
 
+  // Function to remove a tour from the list
+  // Passed down to the Tours component (Tours.js) and then to individual Tour components (Tour.js)
   const removeTour = (id) => {
     const newTours = tours.filter((tour) => tour.id !== id);
     setTours(newTours);
   };
 
+  // Function to fetch tours from the API
   const fetchTours = async () => {
     setIsLoading(true);
 
@@ -26,10 +29,12 @@ const App = () => {
     setIsLoading(false);
   };
 
+  // Fetch tours when the component mounts
   useEffect(() => {
     fetchTours();
   }, []);
 
+  // Show loading screen while data is being fetched
   if (isLoading) {
     return (
       <main>
@@ -38,11 +43,12 @@ const App = () => {
     );
   }
 
+  // Display message when there are no tours left
   if (tours.length === 0) {
     return (
       <main>
         <div className="title">
-          <h2>No Tours left</h2>
+          <h2>No Tours Left</h2>
           <button
             onClick={fetchTours}
             className="btn"
@@ -59,9 +65,12 @@ const App = () => {
   return (
     <>
       <main>
+        {/* Passing the list of tours and removeTour function to the Tours component */}
+        {/* Tours component (Tours.js) will render each tour using the Tour component (Tour.js) */}
         <Tours tours={tours} removeTour={removeTour} />
       </main>
     </>
   );
 };
+
 export default App;
