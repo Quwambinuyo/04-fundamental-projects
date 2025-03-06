@@ -1,5 +1,7 @@
 import React from "react";
 
+// Component to display individual person details
+// This component is used in the List component (see List.js)
 const Person = ({ image, name, age }) => {
   return (
     <>
