@@ -1,5 +1,8 @@
 import React from "react";
 
+// Component to display a single menu item
+// Used inside Menu.js, which renders a list of menu items
+// Menu.js is filtered based on categories selected in Categories.js
 const MenuItem = ({ img, title, price, desc }) => {
   return (
     <>
