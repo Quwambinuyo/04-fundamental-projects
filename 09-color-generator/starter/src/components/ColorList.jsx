@@ -6,6 +6,7 @@ const ColorList = ({ colors }) => {
   return (
     <>
       <section className="colors">
+        {/* Iterate through colors and render a SingleColor component for each */}
         {colors.map((color, index) => {
           return <SingleColor key={nanoid()} color={color} index={index} />;
         })}
