@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ addItem }) => {
   const [newItemName, setNewItemName] = useState("");
   const handleSumbit = (e) => {
     e.preventDefault();
-    console.log(newItemName);
+    if (!newItemName) return;
+    addItem(newItemName);
+    setNewItemName("");
   };
 
   return (
