@@ -10,7 +10,7 @@ const Form = ({ addItem }) => {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    if (!newItemName) {
+    if (!newItemName || " ") {
       toast.error("pleaase provide a value");
 
       return;
