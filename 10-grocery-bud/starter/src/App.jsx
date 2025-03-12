@@ -1,75 +1,72 @@
-import { useState } from "react"; // Import useState hook from React
-import Form from "./components/Form"; // Import the Form component
-import { nanoid } from "nanoid"; // Import nanoid for generating unique IDs
-import Items from "./components/Items"; // Import the Items component
+import React, { useState } from "react";
+import Form from "./components/Form";
+import { nanoid } from "nanoid";
+import Items from "./components/Items";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// Function to retrieve the items list from localStorage
 const getLocalStorage = () => {
-  // Attempt to get the 'list' from localStorage
-  let list = localStorage.getItem("list");
-
-  // If exists, parse the JSON string into an object
-  if (list) {
-    list = JSON.parse(localStorage.getItem("list"));
-  } else {
-    // If not found, return an empty array
-    list = [];
-  }
-
-  return list; // Return the parsed list or an empty array
+  const list = localStorage.getItem("list");
+  return list ? JSON.parse(list) : [];
 };
 
-// defaultList can be passed to the items, setItems useState and still get the same functionality
-// const defaultList = JSON.parse(localStorage.getItem("list") || '[]');
-
-// Function to save the items list to localStorage
 const setLocalStorage = (items) => {
-  // Convert the items array to a JSON string and save it in localStorage
   localStorage.setItem("list", JSON.stringify(items));
 };
 
-// Main App component that manages the state of items and renders the form and items list
 const App = () => {
-  // State to hold an array of items, initialized from localStorage
   const [items, setItems] = useState(getLocalStorage());
 
-  // Function to add a new item to the list
   const addItem = (itemName) => {
-    // Create a new item object with a unique ID and default completed state
-    const newItem = {
-      name: itemName, // Name of the new item
-      completed: false, // Initial status of the item is not completed
-      id: nanoid(), // Generate a unique ID for the item using nanoid
-    };
-
-    // Create a new array with the existing items and the new item
+    const newItem = { name: itemName, completed: false, id: nanoid() };
     const newItems = [...items, newItem];
 
-    setItems(newItems); // Update the state with the new items array
-    setLocalStorage(newItems); // Save the updated items to localStorage
+    setItems(newItems);
+    setLocalStorage(newItems);
+
+    toast.success("Item added to the list", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
   };
 
-  // Function to remove an item from the list based on its ID
   const removeItem = (itemId) => {
-    // Filter out the item with the specified ID from the items array
     const newItems = items.filter((item) => item.id !== itemId);
-
-    // Update the items state with the new array
     setItems(newItems);
-    setLocalStorage(newItems); // Save the updated items to localStorage
+    setLocalStorage(newItems);
+
+    toast.success("Item successfully removed", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
+  };
+
+  const editItem = (itemId) => {
+    const newEditItems = items.map((item) =>
+      item.id === itemId ? { ...item, completed: !item.completed } : item
+    );
+
+    setItems(newEditItems);
+    setLocalStorage(newEditItems);
   };
 
   return (
-    <>
-      <section className="section-center">
-        {/* Centered section for the form and items */}
-        <Form addItem={addItem} />{" "}
-        {/* Render Form component and pass addItem function as a prop */}
-        <Items items={items} removeItem={removeItem} />{" "}
-        {/* Render Items component with items and removeItem function */}
-      </section>
-    </>
+    <section className="section-center">
+      <ToastContainer position="top-center" autoClose={3000} />
+      <Form addItem={addItem} />
+      <Items items={items} removeItem={removeItem} editItem={editItem} />
+    </section>
   );
 };
 
-export default App; // Export the App component for use in other files
+export default App;

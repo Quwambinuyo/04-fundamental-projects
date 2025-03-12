@@ -1,5 +1,6 @@
-import React from "react"; // Import React library
-import { useState } from "react"; // Import useState hook for managing local state
+import React from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 // Functional component that renders a form for adding new grocery items, taking 'addItem' as a prop
 const Form = ({ addItem }) => {
@@ -9,7 +10,11 @@ const Form = ({ addItem }) => {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    if (!newItemName) return; // If the input is empty, do nothing
+    if (!newItemName) {
+      toast.error("pleaase provide a value");
+
+      return;
+    } // If the input is empty, do nothing
     addItem(newItemName); // Call the addItem function with the new item name
     setNewItemName(""); // Reset the input field after submission
   };
