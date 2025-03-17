@@ -1,4 +1,16 @@
+import Home from "./components/Home";
+import Modal from "./components/Modal";
+import Sidebar from "./components/Sidebar";
+
 const App = () => {
-  return <h2>Sidebar Starter</h2>;
+  return (
+    <>
+      <>
+        <Home />
+        <Sidebar />
+        <Modal />
+      </>
+    </>
+  );
 };
 export default App;
