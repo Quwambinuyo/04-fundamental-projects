@@ -1,14 +1,19 @@
 import React from "react";
-import { useGlobalContext } from "./context/GlobalContext";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Sidebar from "./components/Sidebar";
+import Submenu from "./components/Submenu";
 
 const App = () => {
-  const { isSidebarOpen, openSidebar } = useGlobalContext();
-  console.log(isSidebarOpen);
-
   return (
-    <div>
-      <h2>Strapi Starter</h2>
-    </div>
+    <>
+      <main>
+        <Navbar />
+        <Hero />
+        <Sidebar />
+        <Submenu />
+      </main>
+    </>
   );
 };
 
