@@ -8,6 +8,7 @@ const Modal = () => {
     <>
       <div
         className={isModalOpen ? "modal-overlay show-modal" : "modal-overlay"}
+        onClick={closeModal}
       >
         <div className="modal-container">
           <h3>Modal Content</h3>
