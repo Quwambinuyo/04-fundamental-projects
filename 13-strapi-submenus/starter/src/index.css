@@ -263,7 +263,7 @@ body {
 
 /* 
 ============= 
-Navbar CSS 
+Navbar
 =============== 
 */
 
@@ -273,7 +273,6 @@ nav {
   align-items: center;
   justify-content: center;
 }
-
 .nav-center {
   width: var(--fluid-width);
   max-width: var(--max-width);
@@ -281,14 +280,12 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
-
 .logo {
   text-transform: none;
   color: var(--white);
   letter-spacing: 3px;
   font-weight: 700;
 }
-
 .toggle-btn {
   width: 2rem;
   height: 2rem;
@@ -299,19 +296,16 @@ nav {
   transition: var(--transition);
   cursor: pointer;
 }
-
 .toggle-btn:hover {
   transform: scale(1.05);
 }
-
 /* 
 ============= 
-Hero CSS 
+Hero
 =============== 
 */
-
 .hero-container {
-  min-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 5rem);
   display: grid;
   place-items: center;
 }
@@ -320,6 +314,7 @@ Hero CSS
   width: var(--fluid-width);
   max-width: var(--max-width);
 }
+
 .hero-center h1 {
   font-size: clamp(3rem, 5vw, 5rem);
   margin-bottom: 1rem;
@@ -327,7 +322,7 @@ Hero CSS
   line-height: 1.25;
 }
 .hero-center p {
-  line-height: 1.5rem;
+  line-height: 1.5;
 }
 
 @media screen and (min-width: 992px) {
@@ -342,29 +337,99 @@ Hero CSS
     display: none;
   }
 }
+
 /* 
 ============= 
-NavLinks CSS 
+Sidebar
 =============== 
 */
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  /* toggle */
+  opacity: 0;
+  visibility: hidden;
+}
+.show-sidebar {
+  opacity: 1;
+  visibility: visible;
+  transition-property: opacity;
+  transition-duration: 1s;
+}
+/* toggle class */
+
+.sidebar-container {
+  padding: 4rem 2rem;
+  position: relative;
+}
+
+.close-btn {
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  color: var(--primary-500);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.sidebar article {
+  margin-bottom: 2rem;
+}
+.sidebar h4 {
+  margin-bottom: 1rem;
+  color: var(--primary-700);
+}
+
+.sidebar-sublinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0.5rem;
+}
+
+.sidebar-sublinks a {
+  display: block;
+  color: var(--grey-900);
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.sidebar-sublinks svg {
+  color: var(--grey-500);
+}
+@media screen and (min-width: 992px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* 
+============= 
+Nav Links
+=============== 
+*/
 .nav-links {
   display: none;
 }
-
 @media screen and (min-width: 992px) {
   .nav-links {
     display: flex;
     justify-content: center;
-  }
 
+    align-self: stretch;
+  }
   .nav-center {
+    align-self: stretch;
     display: grid;
     grid-template-columns: auto 1fr;
   }
-
   .nav-link {
-    border: 2px solid blue;
     padding: 0 1rem;
     color: var(--white);
     background: transparent;
@@ -377,39 +442,37 @@ NavLinks CSS
 }
 
 /* 
-    ============= 
-    Submenu CSS 
-    =============== 
-    */
-
+============= 
+Submenu
+=============== 
+*/
 .submenu {
   display: none;
 }
-
 @media screen and (min-width: 992px) {
   .submenu {
     display: block;
     position: fixed;
-    top: 6rem;
+    top: 7rem;
     left: 50%;
     width: var(--fluid-width);
     max-width: var(--max-width);
     background: var(--white);
-    border-radius: var(--borderRadius);
     padding: 2rem;
-
     transform: rotateX(-90deg) translateX(-50%);
     transform-origin: top;
     perspective: 1000px;
-    /* toggle stuff */
+    border-radius: var(--borderRadius);
     visibility: hidden;
     opacity: 0;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    z-index: -1;
   }
   .show-submenu {
-    opacity: 1;
     visibility: visible;
-    transform: rotateX(0deg) translate(-50%);
+    opacity: 1;
+    transform: rotateX(0deg) translateX(-50%);
+    z-index: 10;
   }
   .submenu h5 {
     margin-bottom: 1rem;
