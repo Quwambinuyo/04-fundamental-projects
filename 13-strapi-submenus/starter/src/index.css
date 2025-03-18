@@ -342,3 +342,36 @@ Hero CSS
     display: none;
   }
 }
+/* 
+============= 
+NavLinks CSS 
+=============== 
+*/
+
+.nav-links {
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .nav-links {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-center {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  .nav-link {
+    border: 2px solid blue;
+    padding: 0 1rem;
+    color: var(--white);
+    background: transparent;
+    border-color: transparent;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    letter-spacing: var(--letterSpacing);
+    cursor: pointer;
+  }
+}
